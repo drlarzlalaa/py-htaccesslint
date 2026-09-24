@@ -41,14 +41,14 @@ python -m htaccesslint FILE [FILE ...] [--json] [--strict] [--quiet]
 | `ifmodule` | info | `ExpiresActive` outside `<IfModule mod_expires.c>` |
 | `indexes` | warn | `Options +Indexes` or `Indexes` (directory listings) |
 | `duplicate` | warn | the same line twice in the same container |
-| `typo` | warn | a directive one or two characters away from a well-known one (`RewriteEngin`) |
+| `typo` | warn | a directive spelled almost like a well-known one (`RewriteEngin`) |
 | `crlf` | warn | Windows line endings |
 
 Lines ending in `\` are joined, comments are skipped, and a line repeated in *different* containers is not a duplicate.
 
 ## What it does not do
 
-- It does not parse every Apache directive. The typo check knows about 100 common ones and stays silent about anything else, so a custom module's directive is not flagged.
+- It does not parse every Apache directive. The typo check knows about 81 common ones and stays silent about anything else, so a custom module's directive is not flagged.
 - It cannot know which modules your server has, which Apache version runs, or what the main configuration already sets, so `access-2.2`, `php-directive` and `rewriteengine` are prompts to check, not proof of a fault.
 - It does not evaluate `RewriteCond`/`RewriteRule` patterns, so it does not find redirect loops.
 
