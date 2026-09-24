@@ -1,0 +1,17 @@
+RewriteEngin On
+RewriteRule ^old$ /new [R=301,L]
+RewriteCond %{HTTPS} off
+Header set X-Frame-Options "SAMEORIGIN"
+Header always set Strict-Transport-Security "max-age=300; includeSubDomains; preload"
+Header always set Content-Security-Policy "default-src * 'unsafe-inline'"
+Order allow,deny
+Allow from all
+php_value memory_limit 256M
+ExpiresActive On
+Options +Indexes
+AllowOverride All
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+</FilesMatch>
+<Files secret.txt>
+Require all denied
